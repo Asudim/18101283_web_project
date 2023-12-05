@@ -9,7 +9,7 @@ const { sql_login, sql_board } = require('../../home');
 
 const page =fs.readFileSync('../ejs/board.ejs','utf8');
 
-router.get('/getdata', (req, res)=> {
+router.post('/getdata', (req, res)=> {
     var post_id = request.session.post_id;
     sql_board.query("SELECT * from data WHERE post_id == post_id;", function(error,result,fileds){
         if(error) throw error;
