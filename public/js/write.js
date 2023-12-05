@@ -8,6 +8,10 @@ const router = express.Router();
 const { sql_login, sql_board } = require('../../home');
 
 router.post('/write', function(request, response) {
+    sql_board.query('DESCRIBE post_id',(err,results)=>{
+        if(err) throw error;
+    })
+    var post_id = results.length+1;
 	var title = request.body.title;
     var time = new Date();
     var year = time.getFullYear;
@@ -18,7 +22,7 @@ router.post('/write', function(request, response) {
     var user = req.session.data;
 	
 	if (title && text) {
-        sql_board.query('INSERT INTO data (title, date, user, text) VALUES(?,?,?,?)', [title, dateString, user, text],
+        sql_board.query('INSERT INTO data (post_id,title, date, user, text) VALUES(?,?,?,?,?)', [post_id, title, dateString, user, text],
             function (error, data) {
                 if (error)
                   console.log(error);
