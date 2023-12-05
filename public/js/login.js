@@ -23,6 +23,5 @@ router.post('/login', function(request, response) {
 		response.send('Please enter UserID and Password!');
 	}
 });
-// session 추가하여 로그인 후 정보 저장. 
 
 module.exports = router;

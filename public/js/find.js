@@ -13,7 +13,7 @@ router.post('/find', function(request, response) {
 			if (results.length > 0) {
                 const retrievedPassword = results[0].password;
                 response.redirect(`/password?password=${encodeURIComponent(retrievedPassword)}`);
-                //정보전달.
+                
 			} else {
 				response.send('Incorrect UserID or Email');
 			}			

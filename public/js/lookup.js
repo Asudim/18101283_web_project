@@ -9,8 +9,9 @@ const { sql_login, sql_board } = require('../../home');
 
 const page =fs.readFileSync('../ejs/board.ejs','utf8');
 
-router.post('/getdata', (req, res)=> {
-    sql_board.query("SELECT * from data ;", function(error,result,fileds){
+router.get('/getdata', (req, res)=> {
+    var post_id = request.session.post_id;
+    sql_board.query("SELECT * from data WHERE post_id == post_id;", function(error,result,fileds){
         if(error) throw error;
         else{
             // result에서 불러오고 render;
@@ -20,7 +21,6 @@ router.post('/getdata', (req, res)=> {
     });
 });
 router.post('/modify',(req,res)=>{
-    sql_board
     //modify.html로 이동
     //세션에서 유저id와 작성자가 일치할경우에만 나타남
 })
