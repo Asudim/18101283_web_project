@@ -12,10 +12,10 @@ router.post('/register', function(request, response) {
 	var email = request.body.email;
 	
 	if (username && userid && password && email) {
-		connection.query('SELECT * FROM user WHERE username = ? AND userid = ? AND password = ? AND email = ?', [username, userid, password, email], function(error, results, fields) {
+		sql_login.query('SELECT * FROM user WHERE username = ? AND userid = ? AND password = ? AND email = ?', [username, userid, password, email], function(error, results, fields) {
 			if (error) throw error;
 			if (results.length <= 0) {
-        connection.query('INSERT INTO user (username, userid, password, email) VALUES(?,?,?,?)', [username, userid, password, email],
+        	sql_login.query('INSERT INTO user (username, userid, password, email) VALUES(?,?,?,?)', [username, userid, password, email],
             function (error, data) {
                 if (error)
                   console.log(error);
