@@ -10,6 +10,12 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+app.use(session({
+  secret: 'web', 
+  resave: false,
+  saveUninitialized: true
+}));
+
 const dbConfig_login = {
     host: 'your_database_host',
     user: 'your_database_user',
