@@ -13,6 +13,7 @@ router.post('/login', function(request, response) {
 		sql_login.query('SELECT * FROM user WHERE userid = ? AND password = ?', [userid, password], function(error, results, fields) {
 			if (error) throw error;
 			if (results.length > 0) {
+				request.session.data = userid;
 				response.redirect('/board');
 			} else {
 				response.send('Incorrect UserID or Password');
